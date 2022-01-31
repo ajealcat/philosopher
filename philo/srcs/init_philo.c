@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/01/31 16:42:32 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/01/31 17:10:17 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,31 @@
 number_of_philosophers time_to_die time_to_eat time_to_sleep
 [number_of_times_each_philosopher_must_eat]
 */
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	nb;
+
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == 43 || str[i] == 45)
+	{
+		if (str[i] == 45)
+			sign = -sign;
+		i++;
+	}
+	while (str[i] > 47 && str[i] < 58)
+	{
+		nb = nb * 10 + str[i] - 48;
+		i++;
+	}
+	return (nb * sign);
+}
 
 t_philo	init_philo(t_philo philo, char **av)
 {
@@ -27,4 +52,5 @@ t_philo	init_philo(t_philo philo, char **av)
 		philo.stop_when = ft_atoi(av[5]);
 	else
 		philo.stop_when = NULL;
+	return (philo);
 }
