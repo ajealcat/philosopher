@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/01/31 16:33:49 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/01/31 16:42:32 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ number_of_philosophers time_to_die time_to_eat time_to_sleep
 
 t_philo	init_philo(t_philo philo, char **av)
 {
+	philo.nbr_of_philo = ft_atoi(av[1]);
 	philo.time_to_die = ft_atoi(av[2]);
 	philo.time_to_eat = ft_atoi(av[3]);
 	philo.time_to_sleep = ft_atoi(av[4]);
