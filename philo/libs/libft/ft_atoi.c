@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philospher.h                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/01/31 16:33:51 by ajearuth         ###   ########.fr       */
+/*   Created: 2021/05/21 11:38:45 by ajearuth          #+#    #+#             */
+/*   Updated: 2021/05/23 15:35:10 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSPHER_H
-# define PHILOSOPHER_H
+#include <stdlib.h>
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <fcntl.h>
-# include "libft.h"
-# include <stdio.h>
-# include <pthread.h>
-
-typedef struct s_philo
+int	ft_atoi(const char *str)
 {
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	stop_when;
-}	t_philo;
+	int	i;
+	int	sign;
+	int	nb;
 
-#endif
+	i = 0;
+	sign = 1;
+	nb = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == 43 || str[i] == 45)
+	{
+		if (str[i] == 45)
+			sign = -sign;
+		i++;
+	}
+	while (str[i] > 47 && str[i] < 58)
+	{
+		nb = nb * 10 + str[i] - 48;
+		i++;
+	}
+	return (nb * sign);
+}

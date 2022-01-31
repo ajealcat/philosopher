@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philospher.h                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/01/31 16:33:51 by ajearuth         ###   ########.fr       */
+/*   Created: 2021/05/21 11:13:13 by ajearuth          #+#    #+#             */
+/*   Updated: 2021/08/10 13:56:45 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSPHER_H
-# define PHILOSOPHER_H
+#include <string.h>
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/types.h>
-# include <fcntl.h>
-# include "libft.h"
-# include <stdio.h>
-# include <pthread.h>
-
-typedef struct s_philo
+size_t	ft_strlen(const char *str)
 {
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	stop_when;
-}	t_philo;
+	const char	*p;
 
-#endif
+	p = str;
+	while (*str)
+		++str;
+	return (str - p);
+}
