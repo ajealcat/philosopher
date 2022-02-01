@@ -6,21 +6,18 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/01/31 17:10:52 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:57:54 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philospher.h"
+#include "philosopher.h"
 
 int	main(int ac, char **av)
 {
-	t_philo		philos;
-	pthread_t	new_philo;
+	t_philo philos;
 
-	init_philo(philos, av);
-	if (ac == 5 || ac == 6)
-	{
+	philos = init_philo(&philos, av);
+	if (args_are_ok(ac, av) == 1)
 		printf("nombre de philo = %d\n", philos.nbr_of_philo);
-	}
 	return (0);
 }

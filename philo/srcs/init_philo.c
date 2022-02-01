@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/01/31 17:10:17 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/01 18:37:27 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ int	ft_atoi(const char *str)
 	return (nb * sign);
 }
 
-t_philo	init_philo(t_philo philo, char **av)
+t_philo	init_philo(t_philo *philo, char **av)
 {
-	philo.nbr_of_philo = ft_atoi(av[1]);
-	philo.time_to_die = ft_atoi(av[2]);
-	philo.time_to_eat = ft_atoi(av[3]);
-	philo.time_to_sleep = ft_atoi(av[4]);
+	philo->nbr_of_philo = ft_atoi(av[1]);
+	philo->time_to_die = ft_atoi(av[2]);
+	philo->time_to_eat = ft_atoi(av[3]);
+	philo->time_to_sleep = ft_atoi(av[4]);
 	if (av[5] != NULL)
-		philo.stop_when = ft_atoi(av[5]);
+		philo->stop_when = ft_atoi(av[5]);
 	else
-		philo.stop_when = NULL;
-	return (philo);
+		philo->stop_when = -1;
+	return (*philo);
 }
