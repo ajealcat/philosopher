@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/02 11:55:53 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/02 14:53:14 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,47 @@ int	ft_atoi(const char *str)
 	return (nb * sign);
 }
 
-t_philo	init_philo(t_philo *philo, char **av)
+t_data	init_data(t_data *data, char **av)
 {
-	philo->nbr_of_philo = ft_atoi(av[1]);
-	philo->time_to_die = ft_atoi(av[2]);
-	philo->time_to_eat = ft_atoi(av[3]);
-	philo->time_to_sleep = ft_atoi(av[4]);
+	data->nbr_of_philo = ft_atoi(av[1]);
+	data->time_to_die = ft_atoi(av[2]);
+	data->time_to_eat = ft_atoi(av[3]);
+	data->time_to_sleep = ft_atoi(av[4]);
 	if (av[5] != NULL)
-		philo->stop_when = ft_atoi(av[5]);
+		data->stop_when = ft_atoi(av[5]);
 	else
-		philo->stop_when = -1;
-	return (*philo);
+		data->stop_when = -1;
+	return (*data);
+}
+
+t_philo	init_philo(t_data *data, int i)
+{
+	t_philo philo;
+
+	philo.philo_id = i;
+	philo.fork_nbr = data->nbr_of_philo;
+	philo.death = 0;
+	philo.meal_to_eat = data->stop_when;
+	philo.data = data;
+}
+
+int	create_threads(t_data *data)
+{
+	t_philo	*philo;
+	int		i;
+
+	i = 0;
+	philo = malloc(sizeof(t_philo) * data->nbr_of_philo);
+	if (philo == NULL)
+		return (-1);
+	data->each_philo = malloc(sizeof(pthread_t) * data->nbr_of_philo);
+	if (data->each_philo == NULL)
+		return (-1);
+	while (i < data->nbr_of_philo)
+	{
+		philo[i] = init_philo(data, i + 1);
+		i++;
+	}
+	data->philo = philo;
+	return (1);
 }

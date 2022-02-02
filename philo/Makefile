@@ -6,7 +6,7 @@
 #    By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 14:54:27 by ajearuth          #+#    #+#              #
-#    Updated: 2022/02/02 11:37:39 by ajearuth         ###   ########.fr        #
+#    Updated: 2022/02/02 15:50:03 by ajearuth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philosopher
 
 # Project sources and objs 
 
-SRCS = main.c init_philo.c error_management.c
+SRCS = main.c init_philo.c error_management.c init_forks.c
 SRCSD = srcs/
 OBJSD = objs/
 OBJS = $(addprefix $(OBJSD), $(SRCS:.c=.o))
@@ -27,7 +27,6 @@ BONUSD = bonus/
 BONUSOD = $(BONUSD)objsb/
 OBJSBONUS = $(addprefix $(BONUSOD), $(BONUS_SRCS:.c=.o))
 
-#DEPS = $(addprefix $(OBJD), $(SRCS:.c=.d))
 CC = clang -c -o
 COMPIL = clang
 FLAGS = -Wall -Wextra -Werror
@@ -46,7 +45,7 @@ $(NAME):	$(OBJS)
 
 $(OBJSD)%.o: $(SRCSD)%.c
 	mkdir -p $(OBJSD)
-	$(CC) $@ $(FLAGS) -MMD $<
+	$(CC) $@ $(FLAGS) $<
 
 bonus: $(BONUS_NAME)
 
@@ -55,7 +54,7 @@ $(BONUS_NAME) : $(OBJSBONUS)
 
 $(BONUSOD)%.o: $(BONUSD)%.c
 	mkdir -p $(BONUSOD)
-	$(CC) $@ $(FLAGS) -MMD $< 
+	$(CC) $@ $(FLAGS) $< 
 
 clean:
 	rm -rf $(OBJSD) $(BONUSOD)
@@ -64,7 +63,5 @@ fclean:	clean
 	rm -rf $(NAME) $(BONUS_NAME)
 
 re: fclean all 
-
-#-include $(DEPS) 
 
 .PHONY: all bonus clean fclean re
