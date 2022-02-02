@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:12:32 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/01 19:28:39 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/02 11:50:52 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_strlen(char *str)
 
 	i = 0;
 
-	while(str)
+	while(str[i])
 		++i;
 	return (i);
 }
@@ -45,12 +45,24 @@ int	error(char *str)
 int	args_are_ok(int ac, char **av)
 {
 	int i;
+	int j;
 
 	i = 1;
-	while (ac == 6 || ac == 5)
+	if (ac != 5 && ac != 6)
+		return (error("Error : Invalid number of arguments\n"));
+	while (av[i])
 	{
-		if (ft_isdigit(av[i]) == 0)
-			error("arguments must be digit");
+		j = 0;
+		while (av[i][j])
+		{
+			if (ft_isdigit(av[i][j]) == 0)
+				return (error("Error : Invalid arguments\n"));
+			if (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < 0 ||
+			ft_strlen(av[i]) > 11)
+				return (error("Error : Invalid arguments\n"));
+			++j;
+		}
 		++i;
 	}
+	return (1);
 }

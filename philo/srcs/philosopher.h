@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/01 19:28:40 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/02 11:37:20 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <pthread.h>
+# include <limits.h>
 
 typedef struct s_philo
 {
