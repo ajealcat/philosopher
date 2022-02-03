@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/02 16:09:48 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:11:22 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/types.h>
+# include <sys/time.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <pthread.h>
@@ -36,7 +37,7 @@ typedef struct s_philo
 {
 	int	philo_id;
 	int	fork_nbr;
-	int	death;
+	int	still_alive;
 	pthread_mutex_t	*my_fork;
 	pthread_mutex_t	*his_fork;
 	pthread_mutex_t	*save;

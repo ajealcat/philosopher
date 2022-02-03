@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/02 14:53:14 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:11:37 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_philo	init_philo(t_data *data, int i)
 
 	philo.philo_id = i;
 	philo.fork_nbr = data->nbr_of_philo;
-	philo.death = 0;
+	philo.still_alive = 1;
 	philo.meal_to_eat = data->stop_when;
 	philo.data = data;
 }
