@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/04 13:43:39 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:09:39 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,3 @@ int		is_philo_still_alive(t_philo *philo)
 {
 	
 }
-
-int	my_usleep(long int timing)

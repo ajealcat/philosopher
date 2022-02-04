@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:58:27 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/04 13:10:25 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/04 16:00:27 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ long int	get_time(void)
 
 	ms = 0;
 	if (gettimeofday(&time, NULL) == -1)
+	{
+		ft_putstr_fd("Error: gettimeofday error.\n", 2);
 		return (-1);
+	}
 	ms = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return (ms);
 }
@@ -31,4 +34,9 @@ void	print_status(t_philo *philo, char *str)
 	printf("%ld philo %d %s", get_time(), philo->philo_id, str);
 	pthread_mutex_unlock(philo->data->write);
 	pthread_mutex_unlock(philo->data->time);
+}
+
+int	my_usleep(long int timing)
+{
+	
 }
