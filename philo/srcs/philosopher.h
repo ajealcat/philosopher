@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/03 15:11:22 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:08:23 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ typedef struct s_data
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	stop_when;
-	pthread_t	each_philo;
+	pthread_mutex_t	*time;
+	pthread_mutex_t	*write;
 	struct s_philo	*philo;
 }	t_data;
 
 typedef struct s_philo
 {
 	int	philo_id;
-	int	fork_nbr;
+	pthread_t	thread_id;
 	int	still_alive;
 	pthread_mutex_t	*my_fork;
 	pthread_mutex_t	*his_fork;

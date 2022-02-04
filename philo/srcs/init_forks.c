@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:32:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/02 16:03:05 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/04 13:30:35 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,19 @@ int init_mutex(t_philo *philo)
 		return (-1);
 	}
 	return (1);
+}
+
+void	find_his_fork(t_philo *philo)
+{
+	int i;
+
+	i = 0;
+	while (i < philo->data->nbr_of_philo)
+	{
+		if (i == philo->data->nbr_of_philo - 1)
+			philo[i].his_fork = philo[0].my_fork;
+		else
+			philo[i].his_fork = philo[i + 1].my_fork;
+		++i;
+	}
 }
