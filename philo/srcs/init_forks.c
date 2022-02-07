@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:32:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/04 16:49:10 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:47:03 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ pthread_mutex_t	*create_mutex(void)
 	return (mutex);
 }
 
-int init_mutex(t_philo *philo)
+int	init_mutex(t_philo *philo)
 {
 	philo->my_fork = create_mutex();
 	if (philo->my_fork == NULL)
@@ -47,7 +47,7 @@ int init_mutex(t_philo *philo)
 
 void	find_his_fork(t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < philo->data->nbr_of_philo)

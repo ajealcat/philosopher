@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 14:31:53 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:01:45 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_data	init_data(t_data *data, char **av)
 		data->stop_when = ft_atoi(av[5]);
 	else
 		data->stop_when = -1;
+	data->someone_died = 0;
 	data->write = create_mutex();
 	data->time = create_mutex();
 	return (*data);
@@ -62,6 +63,7 @@ t_philo	init_philo(t_data *data, int i)
 	t_philo		philo;
 	pthread_t	new_thread;
 
+	new_thread = 0;
 	philo.philo_id = i;
 	philo.still_alive = 1;
 	philo.meal_to_eat = data->stop_when;
@@ -86,7 +88,16 @@ int	create_threads(t_data *data)
 		philo[i] = init_philo(data, i + 1);
 		i++;
 	}
+	i = 0;
 	data->philo = philo;
-	data->philo->his_fork = find_his_fork(data->philo);
+	find_his_fork(data->philo);
+	data->departure_time = get_time();
+	while (i < data->nbr_of_philo)
+	{
+		if (pthread_create(&philo[i].thread_id, NULL,
+				global_philo, (void *)&philo[i]) != 0)
+			return (-1);
+		++i;
+	}
 	return (1);
 }

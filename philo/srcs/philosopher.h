@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 14:33:30 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:01:39 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				stop_when;
+	int				someone_died;
+	long int		departure_time;
 	pthread_mutex_t	*time;
 	pthread_mutex_t	*write;
 	struct s_philo	*philo;
@@ -53,8 +55,16 @@ int					error(char *str);
 int					args_are_ok(int ac, char **av);
 int					ft_isdigit(int c);
 int					init_mutex(t_philo *philo);
+int					create_threads(t_data *data);
+long int			get_time(void);
+void				find_his_fork(t_philo *philo);
 void				ft_putstr_fd(char *str, int fd);
-
+void				philo_think(t_philo *philo);
+void				philo_eat(t_philo *philo);
+void				philo_sleep(t_philo *philo);
+void				*global_philo(void *philo);
+void				my_usleep(t_philo *philo, long int timing);
+void				print_status(t_philo *philo, char *str);
 pthread_mutex_t		*create_mutex(void);
 
 t_data				init_data(t_data *data, char **av);

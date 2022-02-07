@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:58:27 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 15:27:09 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:01:38 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	print_status(t_philo *philo, char *str)
 {
 	pthread_mutex_lock(philo->data->write);
 	pthread_mutex_lock(philo->data->time);
-	printf("%ld philo %d %s", get_time(), philo->philo_id, str);
+	printf("%ld philo %d %s", get_time() - philo->data->departure_time, 
+		philo->philo_id, str);
 	pthread_mutex_unlock(philo->data->write);
 	pthread_mutex_unlock(philo->data->time);
 }
 
-int	my_usleep(t_philo *philo, long int timing)
+void	my_usleep(t_philo *philo, long int timing)
 {
 	long int count;
 
