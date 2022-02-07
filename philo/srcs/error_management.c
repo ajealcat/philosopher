@@ -6,19 +6,19 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:12:32 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/02 12:21:46 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 13:57:54 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
 
-	while(str[i])
+	while (str[i])
 		++i;
 	return (i);
 }
@@ -44,8 +44,8 @@ int	error(char *str)
 
 int	args_are_ok(int ac, char **av)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
 
 	i = 1;
 	if (ac != 5 && ac != 6)
@@ -57,8 +57,8 @@ int	args_are_ok(int ac, char **av)
 		{
 			if (ft_isdigit(av[i][j]) == 0)
 				return (error("Error : Invalid arguments\n"));
-			if (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < 0 ||
-			ft_strlen(av[i]) > 11)
+			if (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < 0
+				|| ft_strlen(av[i]) > 11)
 				return (error("Error : Invalid arguments\n"));
 			++j;
 		}

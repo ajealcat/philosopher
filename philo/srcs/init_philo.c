@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/04 13:32:39 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 14:31:53 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_philo	init_philo(t_data *data, int i)
 	philo.still_alive = 1;
 	philo.meal_to_eat = data->stop_when;
 	philo.data = data;
+	philo.last_time_eat = 0;
 	philo.thread_id = new_thread;
 	init_mutex(&philo);
 	return (philo);

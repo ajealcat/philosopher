@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:58:27 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/04 16:00:27 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:27:09 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,22 @@ void	print_status(t_philo *philo, char *str)
 	pthread_mutex_unlock(philo->data->time);
 }
 
-int	my_usleep(long int timing)
+int	my_usleep(t_philo *philo, long int timing)
 {
-	
+	long int count;
+
+	pthread_mutex_lock(philo->data->time);
+	pthread_mutex_lock(philo->save);
+	count = get_time();
+	while (philo->still_alive == 1 && get_time() < count + timing)
+	{
+		pthread_mutex_unlock(philo->data->time);
+		pthread_mutex_unlock(philo->save);
+		usleep(500);
+		pthread_mutex_lock(philo->data->time);
+		pthread_mutex_lock(philo->save);
+	}
+	pthread_mutex_unlock(philo->data->time);
+	pthread_mutex_unlock(philo->save);
 }
+          
