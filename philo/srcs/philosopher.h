@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 17:01:39 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:40:50 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,15 @@ int					create_threads(t_data *data);
 long int			get_time(void);
 void				find_his_fork(t_philo *philo);
 void				ft_putstr_fd(char *str, int fd);
-void				philo_think(t_philo *philo);
+void				philo_pair(t_philo *philo);
+void				philo_odd(t_philo *philo);
 void				philo_eat(t_philo *philo);
 void				philo_sleep(t_philo *philo);
 void				*global_philo(void *philo);
 void				my_usleep(t_philo *philo, long int timing);
 void				print_status(t_philo *philo, char *str);
+void				make_pair_philo(t_philo *philo);
+void				make_odd_philo(t_philo *philo);
 pthread_mutex_t		*create_mutex(void);
 
 t_data				init_data(t_data *data, char **av);

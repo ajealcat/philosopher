@@ -6,7 +6,7 @@
 #    By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 14:54:27 by ajearuth          #+#    #+#              #
-#    Updated: 2022/02/07 16:11:53 by ajearuth         ###   ########.fr        #
+#    Updated: 2022/02/08 11:38:14 by ajearuth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philosopher
 
 # Project sources and objs 
 
-SRCS = main.c init_philo.c error_management.c init_forks.c get_time.c actions.c
+SRCS = main.c init_philo.c error_management.c init_forks.c get_time.c actions.c make_philo.c
 SRCSD = srcs/
 OBJSD = objs/
 OBJS = $(addprefix $(OBJSD), $(SRCS:.c=.o))
