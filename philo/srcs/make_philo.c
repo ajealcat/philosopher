@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:37:15 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/08 11:54:50 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:39:56 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	*global_philo(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->data->stop_when != -1)
 	{
-		while (philo->data->someone_died == 0 && philo->data->stop_when > 0)
+		while (philo->data->someone_died == 0 && philo->data->stop_when > 0
+			&& philo->meal_to_eat != philo->meal_to_eat - 1)
 		{
 			if (philo->philo_id % 2 == 0)
 				make_pair_philo(philo);
@@ -44,20 +45,14 @@ void	*global_philo(void *arg)
 
 void	make_pair_philo(t_philo *philo)
 {
-	while (philo->meal_to_eat != philo->meal_to_eat -1)
-	{
-		philo_pair(philo);
-		philo_eat(philo);
-		philo_sleep(philo);
-	}
+	philo_pair(philo);
+	philo_eat(philo);
+	philo_sleep(philo);
 }
 
 void	make_odd_philo(t_philo *philo)
 {
-	while (philo->meal_to_eat != philo->meal_to_eat -1)
-	{
-		philo_odd(philo);
-		philo_eat(philo);
-		philo_sleep(philo);
-	}
+	philo_odd(philo);
+	philo_eat(philo);
+	philo_sleep(philo);
 }

@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/08 12:18:19 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/08 12:35:09 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	philo_sleep(t_philo *philo)
 	my_usleep(philo, philo->data->time_to_sleep);
 	print_status(philo, "is thinking.\n");
 }
-
+/*
 void	philo_died(t_philo *philo)
 {
-	if ()
-}
+	if (last_time_eat )
+}*/
