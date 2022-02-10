@@ -6,7 +6,7 @@
 #    By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 14:54:27 by ajearuth          #+#    #+#              #
-#    Updated: 2022/02/08 11:38:14 by ajearuth         ###   ########.fr        #
+#    Updated: 2022/02/10 16:55:34 by ajearuth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJSBONUS = $(addprefix $(BONUSOD), $(BONUS_SRCS:.c=.o))
 
 CC = clang -c -o
 COMPIL = clang
-FLAGS = -Wall -Wextra -Werror -pthread
+FLAGS = -Wall -Wextra -Werror -pthread -g
 
 all: $(NAME)
 

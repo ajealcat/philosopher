@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/08 12:39:56 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/10 16:20:53 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_data
 	long int		departure_time;
 	pthread_mutex_t	*time;
 	pthread_mutex_t	*write;
+	pthread_mutex_t	*death;
 	struct s_philo	*philo;
 }	t_data;
 
@@ -57,6 +58,7 @@ int					ft_isdigit(int c);
 int					init_mutex(t_philo *philo);
 int					create_threads(t_data *data);
 long int			get_time(void);
+void				philo_died(t_philo *philo);
 void				find_his_fork(t_philo *philo);
 void				ft_putstr_fd(char *str, int fd);
 void				philo_pair(t_philo *philo);

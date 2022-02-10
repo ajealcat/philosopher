@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:58:27 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 17:01:38 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:13:55 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ long int	get_time(void)
 
 void	print_status(t_philo *philo, char *str)
 {
-	pthread_mutex_lock(philo->data->write);
 	pthread_mutex_lock(philo->data->time);
+	pthread_mutex_lock(philo->data->write);
 	printf("%ld philo %d %s", get_time() - philo->data->departure_time, 
 		philo->philo_id, str);
-	pthread_mutex_unlock(philo->data->write);
 	pthread_mutex_unlock(philo->data->time);
+	pthread_mutex_unlock(philo->data->write);
 }
 
 void	my_usleep(t_philo *philo, long int timing)
@@ -46,13 +46,13 @@ void	my_usleep(t_philo *philo, long int timing)
 	count = get_time();
 	while (philo->still_alive == 1 && get_time() < count + timing)
 	{
-		pthread_mutex_unlock(philo->data->time);
 		pthread_mutex_unlock(philo->save);
+		pthread_mutex_unlock(philo->data->time);
 		usleep(500);
 		pthread_mutex_lock(philo->data->time);
 		pthread_mutex_lock(philo->save);
 	}
-	pthread_mutex_unlock(philo->data->time);
 	pthread_mutex_unlock(philo->save);
+	pthread_mutex_unlock(philo->data->time);
 }
           
