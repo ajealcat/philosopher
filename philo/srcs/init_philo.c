@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/10 17:39:07 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/13 22:35:57 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	create_threads(t_data *data)
 	data->departure_time = get_time();
 	while (i < data->nbr_of_philo)
 	{
+		philo[i].last_time_eat = data->departure_time;
 		if (pthread_create(&philo[i].thread_id, NULL,
 				global_philo, (void *)&philo[i]) != 0)
 			return (-1);
@@ -104,6 +105,7 @@ int	create_threads(t_data *data)
 	usleep(500);
 	while (i < data->nbr_of_philo)
 	{
+		philo[i].last_time_eat = data->departure_time;
 		if (pthread_create(&philo[i].thread_id, NULL,
 				global_philo, (void *)&philo[i]) != 0)
 			return (-1);

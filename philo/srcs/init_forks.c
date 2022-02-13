@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 15:32:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 15:47:03 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/13 22:07:39 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	find_his_fork(t_philo *philo)
 	int	i;
 
 	i = 0;
+	if (philo->data->nbr_of_philo == 1)
+		philo[i].his_fork = NULL;
 	while (i < philo->data->nbr_of_philo)
 	{
 		if (i == philo->data->nbr_of_philo - 1)

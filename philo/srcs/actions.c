@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/10 17:33:21 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/13 22:38:36 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	philo_pair(t_philo *philo)
 {
 	pthread_mutex_lock(philo->my_fork);
 	print_status(philo, "has taken his fork.\n");
-	pthread_mutex_lock(philo->his_fork);
+	if (philo->his_fork != NULL)
+		pthread_mutex_lock(philo->his_fork);
 	print_status(philo, "has taken a fork.\n");
 }
 
 void	philo_odd(t_philo *philo)
 {
-	pthread_mutex_lock(philo->his_fork);
+	if (philo->his_fork != NULL)
+		pthread_mutex_lock(philo->his_fork);
 	print_status(philo, "has taken a fork.\n");
 	pthread_mutex_lock(philo->my_fork);
 	print_status(philo, "has taken his fork.\n");
@@ -51,23 +53,25 @@ void	philo_sleep(t_philo *philo)
 
 void	philo_died(t_philo *philo)
 {
-	long int tmp;
-
-	pthread_mutex_lock(philo->data->time);
-	tmp = get_time();
-	pthread_mutex_unlock(philo->data->time);
 	pthread_mutex_lock(philo->data->death);
+	pthread_mutex_lock(philo->data->time);
 	pthread_mutex_lock(philo->save);
-	if ((tmp - philo->last_time_eat) > philo->data->time_to_die)
+	if ((get_time() - philo->last_time_eat) > philo->data->time_to_die)
 	{	
+//		printf("last time eat = %ld\n",  philo->last_time_eat);
+//		printf("get time = %ld\n",  get_time());
+		pthread_mutex_unlock(philo->data->time);
 		pthread_mutex_unlock(philo->save);
-		print_status(philo, "is dead ! RIP...\n");
+		print_status(philo, "\e[0;31mis dead ! RIP...\n");
 		pthread_mutex_lock(philo->save);
 		philo->still_alive = 0;
 		pthread_mutex_unlock(philo->save);
 		philo->data->someone_died = 1;
 	}
 	else
+	{
+		pthread_mutex_unlock(philo->data->time);
 		pthread_mutex_unlock(philo->save);
+	}
 	pthread_mutex_unlock(philo->data->death);
 }
