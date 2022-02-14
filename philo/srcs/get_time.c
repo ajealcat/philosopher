@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:58:27 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/10 17:13:55 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/14 13:54:14 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ long int	get_time(void)
 
 void	print_status(t_philo *philo, char *str)
 {
+	if (check_death(philo) == -1)
+		return ;
 	pthread_mutex_lock(philo->data->time);
 	pthread_mutex_lock(philo->data->write);
 	printf("%ld philo %d %s", get_time() - philo->data->departure_time, 
