@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/14 13:50:41 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:04:16 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->data->time);
 	--philo->meal_to_eat;
 	pthread_mutex_unlock(philo->save);
+
 }
 
 void	philo_sleep(t_philo *philo)
@@ -56,7 +57,8 @@ void	philo_died(t_philo *philo)
 	pthread_mutex_lock(philo->data->time);
 	pthread_mutex_lock(philo->data->death);
 	pthread_mutex_lock(philo->save);
-	if ((get_time() - philo->last_time_eat) > philo->data->time_to_die)
+	if ((get_time() - philo->last_time_eat) > philo->data->time_to_die
+		&& philo->meal_to_eat != 0)
 	{	
 		pthread_mutex_unlock(philo->data->time);
 		pthread_mutex_unlock(philo->save);

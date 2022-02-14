@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:37:15 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/14 14:06:35 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/14 17:20:58 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*global_philo(void *arg)
 	pthread_mutex_lock(philo->save);
 	if (philo->data->stop_when != -1)
 	{
-		while (philo->data->someone_died == 0 && philo->meal_to_eat > 0)
+		while (philo->data->someone_died == 0)
 		{
 			pthread_mutex_unlock(philo->data->death);
 			pthread_mutex_unlock(philo->save);
@@ -73,8 +73,21 @@ int	make_pair_philo(t_philo *philo)
 	}
 	else
 		philo_eat(philo);
-	if (check_death(philo) == -1)
+	pthread_mutex_lock(philo->save);
+	if (philo->meal_to_eat == 0)
+	{
+		pthread_mutex_unlock(philo->my_fork);
+		pthread_mutex_unlock(philo->his_fork);
+		pthread_mutex_unlock(philo->save);
 		return (-1);
+	}
+	pthread_mutex_unlock(philo->save);
+	if (check_death(philo) == -1)
+	{
+		pthread_mutex_unlock(philo->my_fork);
+		pthread_mutex_unlock(philo->his_fork);
+		return (-1);
+	}
 	else
 		philo_sleep(philo);
 	return (0);
@@ -94,8 +107,21 @@ int	make_odd_philo(t_philo *philo)
 	}
 	else
 		philo_eat(philo);
-	if (check_death(philo) == -1)
+	pthread_mutex_lock(philo->save);
+	if (philo->meal_to_eat == 0)
+	{
+		pthread_mutex_unlock(philo->my_fork);
+		pthread_mutex_unlock(philo->his_fork);
+		pthread_mutex_unlock(philo->save);
 		return (-1);
+	}
+	pthread_mutex_unlock(philo->save);
+	if (check_death(philo) == -1)
+	{
+		pthread_mutex_unlock(philo->my_fork);
+		pthread_mutex_unlock(philo->his_fork);
+		return (-1);
+	}
 	else
 		philo_sleep(philo);
 	return (0);
