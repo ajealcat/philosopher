@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 15:08:29 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:58:25 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int ac, char **av)
 	data = init_data(&data, av);
 	if (create_threads(&data) == -1)
 		destroy_and_free(&data);
+	printf("eat enough = %d\n", data.eat_enough);
 	pthread_mutex_lock(data.death);
 	while (data.someone_died == 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 15:08:27 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:06:15 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	philo_sleep(t_philo *philo)
 {
 	print_status(philo, "is sleeping.\n");
 	my_usleep(philo, philo->data->time_to_sleep);
+	pthread_mutex_lock(philo->save);
+	pthread_mutex_unlock(philo->save);
 	print_status(philo, "is thinking.\n");
 }
 
