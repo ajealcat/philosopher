@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 15:58:25 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:24:53 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	destroy_mutex(t_data *data)
 	free(data->write);
 	pthread_mutex_destroy(data->death);
 	free(data->death);
+	pthread_mutex_destroy(data->full);
+	free(data->full);
 }
 
 static void	free_philo(t_philo *philo)
@@ -67,11 +69,12 @@ int	main(int ac, char **av)
 	data = init_data(&data, av);
 	if (create_threads(&data) == -1)
 		destroy_and_free(&data);
-	printf("eat enough = %d\n", data.eat_enough);
 	pthread_mutex_lock(data.death);
-	while (data.someone_died == 0)
+	pthread_mutex_lock(data.full);
+	while (data.someone_died == 0 && data.eat_enough != data.nbr_of_philo)
 	{
 		pthread_mutex_unlock(data.death);
+		pthread_mutex_unlock(data.full);
 		i = 0;
 		while (i < data.nbr_of_philo)
 		{
@@ -79,8 +82,10 @@ int	main(int ac, char **av)
 			++i;
 		}
 		pthread_mutex_lock(data.death);
+		pthread_mutex_lock(data.full);
 	}
 	pthread_mutex_unlock(data.death);
+	pthread_mutex_unlock(data.full);
 	i = 0;
 	while (i < data.nbr_of_philo)
 		pthread_join(data.philo[i++].thread_id, NULL);

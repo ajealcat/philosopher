@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:06:14 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:09:26 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_data	init_data(t_data *data, char **av)
 	data->write = create_mutex();
 	data->time = create_mutex();
 	data->death = create_mutex();
+	data->full = create_mutex();
 	return (*data);
 }
 

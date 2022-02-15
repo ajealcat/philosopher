@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:37:15 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:06:12 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:15:56 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	*global_philo(void *arg)
 		if (habits_launcher(philo) == -1)
 			return ((void *)-1);
 	}
-	pthread_mutex_unlock(philo->data->death);
-	pthread_mutex_unlock(philo->save);
 	return (philo);
 }
 
@@ -75,6 +73,9 @@ int	make_pair_philo(t_philo *philo)
 	pthread_mutex_lock(philo->save);
 	if (philo->meal_to_eat == 0)
 	{
+		pthread_mutex_lock(philo->data->full);
+		++philo->data->eat_enough;
+		pthread_mutex_unlock(philo->data->full);
 		pthread_mutex_unlock(philo->my_fork);
 		pthread_mutex_unlock(philo->his_fork);
 		pthread_mutex_unlock(philo->save);
@@ -105,6 +106,9 @@ int	make_odd_philo(t_philo *philo)
 	pthread_mutex_lock(philo->save);
 	if (philo->meal_to_eat == 0)
 	{
+		pthread_mutex_lock(philo->data->full);
+		++philo->data->eat_enough;
+		pthread_mutex_unlock(philo->data->full);
 		pthread_mutex_unlock(philo->my_fork);
 		pthread_mutex_unlock(philo->his_fork);
 		pthread_mutex_unlock(philo->save);

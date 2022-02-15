@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 14:41:25 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:11:06 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_data
 	int				eat_enough;
 	int				someone_died;
 	long int		departure_time;
+	pthread_mutex_t	*full;
 	pthread_mutex_t	*time;
 	pthread_mutex_t	*write;
 	pthread_mutex_t	*death;
