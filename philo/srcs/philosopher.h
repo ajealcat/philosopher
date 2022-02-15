@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/14 13:40:33 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:41:25 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				stop_when;
+	int				eat_enough;
 	int				someone_died;
 	long int		departure_time;
 	pthread_mutex_t	*time;
@@ -60,6 +61,8 @@ int					create_threads(t_data *data);
 int					check_death(t_philo *philo);
 int					make_pair_philo(t_philo *philo);
 int					make_odd_philo(t_philo *philo);
+int					make_threads(t_data *data, t_philo *philo);
+int					habits_launcher(t_philo *philo);
 long int			get_time(void);
 void				philo_died(t_philo *philo);
 void				find_his_fork(t_philo *philo);

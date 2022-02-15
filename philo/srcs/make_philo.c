@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:37:15 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 13:16:08 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:08:28 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,49 +21,41 @@ void	*global_philo(void *arg)
 	pthread_mutex_lock(philo->save);
 	if (philo->data->stop_when != -1)
 	{
-		while (philo->data->someone_died == 0)
-		{
-			pthread_mutex_unlock(philo->data->death);
-			pthread_mutex_unlock(philo->save);
-			if (philo->philo_id % 2 == 0)
-			{
-				if (make_pair_philo(philo) == -1)
-					return ((void *)-1);
-			}
-			else
-			{
-				if (make_odd_philo(philo) == -1)
-					return ((void *)-1);
-			}
-			pthread_mutex_lock(philo->data->death);
-			pthread_mutex_lock(philo->save);
-		}
-		pthread_mutex_unlock(philo->data->death);
-		pthread_mutex_unlock(philo->save);
+		if (habits_launcher(philo) == -1)
+			return ((void *)-1);
 	}
 	else if (philo->data->stop_when == -1)
 	{
-		while (philo->data->someone_died == 0)
-		{
-			pthread_mutex_unlock(philo->data->death);
-			pthread_mutex_unlock(philo->save);
-			if (philo->philo_id % 2 == 0)
-			{
-				if (make_pair_philo(philo) == -1)
-					return ((void *)-1);
-			}
-			else
-			{
-				if (make_odd_philo(philo) == -1)
-					return ((void *)-1);
-			}
-			pthread_mutex_lock(philo->data->death);
-			pthread_mutex_lock(philo->save);
-		}
+		if (habits_launcher(philo) == -1)
+			return ((void *)-1);
+	}
+	pthread_mutex_unlock(philo->data->death);
+	pthread_mutex_unlock(philo->save);
+	return (philo);
+}
+
+int	habits_launcher(t_philo *philo)
+{
+	while (philo->data->someone_died == 0)
+	{
 		pthread_mutex_unlock(philo->data->death);
 		pthread_mutex_unlock(philo->save);
+		if (philo->philo_id % 2 == 0)
+		{
+			if (make_pair_philo(philo) == -1)
+				return (-1);
+		}
+		else
+		{
+			if (make_odd_philo(philo) == -1)
+				return (-1);
+		}
+		pthread_mutex_lock(philo->data->death);
+		pthread_mutex_lock(philo->save);
 	}
-	return (philo);
+	pthread_mutex_unlock(philo->data->death);
+	pthread_mutex_unlock(philo->save);
+	return (0);
 }
 
 int	make_pair_philo(t_philo *philo)

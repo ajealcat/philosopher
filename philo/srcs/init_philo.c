@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 12:55:12 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:41:22 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_data	init_data(t_data *data, char **av)
 	else
 		data->stop_when = -1;
 	data->someone_died = 0;
+	data->eat_enough = 0;
 	data->write = create_mutex();
 	data->time = create_mutex();
 	data->death = create_mutex();
@@ -89,6 +90,15 @@ int	create_threads(t_data *data)
 		philo[i] = init_philo(data, i + 1);
 		i++;
 	}
+	if (make_threads(data, philo) == -1)
+		return (-1);
+	return (1);
+}
+
+int	make_threads(t_data *data, t_philo *philo)
+{
+	int	i;
+
 	i = 0;
 	data->philo = philo;
 	find_his_fork(data->philo);
