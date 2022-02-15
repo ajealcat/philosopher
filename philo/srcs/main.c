@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/13 22:24:44 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 10:52:38 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	destroy_and_free(t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int i;
+	int		i;
 
 	if (args_are_ok(ac, av) == -1)
 		return (-1);
@@ -77,8 +77,8 @@ int	main(int ac, char **av)
 	}
 	pthread_mutex_unlock(data.death);
 	i = 0;
-	while(i < data.nbr_of_philo)
-		pthread_join(data.philo[i++].thread_id, NULL);			
+	while (i < data.nbr_of_philo)
+		pthread_join(data.philo[i++].thread_id, NULL);
 	destroy_and_free(&data);
 	return (0);
 }
