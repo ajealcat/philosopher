@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:58:09 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 11:17:17 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:55:12 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	create_threads(t_data *data)
 		i += 2;
 	}
 	i = 1;
-	usleep(1500);
+	usleep(500);
 	while (i < data->nbr_of_philo)
 	{
 		philo[i].last_time_eat = data->departure_time;

@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 10:52:38 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:45:25 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 static void	destroy_mutex(t_data *data)
 {
 	pthread_mutex_destroy(data->time);
+	free(data->time);
 	pthread_mutex_destroy(data->write);
+	free(data->write);
 	pthread_mutex_destroy(data->death);
+	free(data->death);
 }
 
 static void	free_philo(t_philo *philo)
@@ -40,6 +43,7 @@ static void	free_philo(t_philo *philo)
 			}
 			++i;
 		}
+		free(philo);
 	}
 }
 
