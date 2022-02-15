@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 11:37:15 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:15:56 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:47:16 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ int	make_odd_philo(t_philo *philo)
 	if (check_death(philo) == -1)
 	{
 		pthread_mutex_unlock(philo->my_fork);
-		pthread_mutex_unlock(philo->his_fork);
+		if (philo->his_fork != NULL)
+			pthread_mutex_unlock(philo->his_fork);
 		return (-1);
 	}
 	else

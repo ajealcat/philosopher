@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:06:15 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:47:34 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	philo_odd(t_philo *philo)
 	print_status(philo, "has taken his fork.\n");
 	if (philo->his_fork != NULL)
 		pthread_mutex_lock(philo->his_fork);
+	else
+	{
+		my_usleep(philo, philo->data->time_to_die * 2);
+		return ;
+	}
 	print_status(philo, "has taken a fork.\n");
 }
 
