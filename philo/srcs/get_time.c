@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:58:27 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:40:19 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:35:32 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,14 @@ void	my_usleep(t_philo *philo, long int timing)
 	}
 	pthread_mutex_unlock(philo->save);
 	pthread_mutex_unlock(philo->data->time);
+}
+
+void	for_the_norm(t_philo *philo)
+{
+	pthread_mutex_lock(philo->data->full);
+	++philo->data->eat_enough;
+	pthread_mutex_unlock(philo->data->full);
+	pthread_mutex_unlock(philo->my_fork);
+	pthread_mutex_unlock(philo->his_fork);
+	pthread_mutex_unlock(philo->save);
 }

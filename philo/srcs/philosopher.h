@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 14:47:35 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:11:06 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:34:53 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void				philo_sleep(t_philo *philo);
 void				*global_philo(void *philo);
 void				my_usleep(t_philo *philo, long int timing);
 void				print_status(t_philo *philo, char *str);
+void				for_the_norm(t_philo *philo);
 pthread_mutex_t		*create_mutex(void);
 
 t_data				init_data(t_data *data, char **av);

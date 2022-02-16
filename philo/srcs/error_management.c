@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:12:32 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/07 13:57:54 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:24:59 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ft_strlen(char *str)
 	int	i;
 
 	i = 0;
-
 	while (str[i])
 		++i;
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:24:53 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:28:02 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,29 @@ static int	destroy_and_free(t_data *data)
 	return (-1);
 }
 
+static void 	checker_main(t_data *data)
+{
+	int	i;
+
+	pthread_mutex_lock(data->death);
+	pthread_mutex_lock(data->full);
+	while (data->someone_died == 0 && data->eat_enough != data->nbr_of_philo)
+	{
+		pthread_mutex_unlock(data->death);
+		pthread_mutex_unlock(data->full);
+		i = 0;
+		while (i < data->nbr_of_philo)
+		{
+			philo_died(&data->philo[i]);
+			++i;
+		}
+		pthread_mutex_lock(data->death);
+		pthread_mutex_lock(data->full);
+	}
+	pthread_mutex_unlock(data->death);
+	pthread_mutex_unlock(data->full);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -69,23 +92,7 @@ int	main(int ac, char **av)
 	data = init_data(&data, av);
 	if (create_threads(&data) == -1)
 		destroy_and_free(&data);
-	pthread_mutex_lock(data.death);
-	pthread_mutex_lock(data.full);
-	while (data.someone_died == 0 && data.eat_enough != data.nbr_of_philo)
-	{
-		pthread_mutex_unlock(data.death);
-		pthread_mutex_unlock(data.full);
-		i = 0;
-		while (i < data.nbr_of_philo)
-		{
-			philo_died(&data.philo[i]);
-			++i;
-		}
-		pthread_mutex_lock(data.death);
-		pthread_mutex_lock(data.full);
-	}
-	pthread_mutex_unlock(data.death);
-	pthread_mutex_unlock(data.full);
+	checker_main(&data);
 	i = 0;
 	while (i < data.nbr_of_philo)
 		pthread_join(data.philo[i++].thread_id, NULL);
