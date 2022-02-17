@@ -6,11 +6,11 @@
 #    By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/28 14:54:27 by ajearuth          #+#    #+#              #
-#    Updated: 2022/02/10 16:55:34 by ajearuth         ###   ########.fr        #
+#    Updated: 2022/02/17 14:50:08 by ajearuth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosopher
+NAME = philo
 
 # Project sources and objs 
 
@@ -21,7 +21,7 @@ OBJS = $(addprefix $(OBJSD), $(SRCS:.c=.o))
 
 #  Bonus sources and objs 
 
-BONUS_NAME = philosopher_bonus
+BONUS_NAME = philo_bonus
 BONUS_SRCS = 
 BONUSD = bonus/
 BONUSOD = $(BONUSD)objsb/

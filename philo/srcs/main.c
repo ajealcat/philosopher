@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 15:01:45 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/16 14:28:02 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:42:29 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	destroy_and_free(t_data *data)
 	return (-1);
 }
 
-static void 	checker_main(t_data *data)
+static void	checker_main(t_data *data)
 {
 	int	i;
 
