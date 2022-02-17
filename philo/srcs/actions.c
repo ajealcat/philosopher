@@ -6,7 +6,7 @@
 /*   By: ajearuth <ajearuth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/03 14:56:43 by ajearuth          #+#    #+#             */
-/*   Updated: 2022/02/15 16:47:34 by ajearuth         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:08:41 by ajearuth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	philo_died(t_philo *philo)
 		pthread_mutex_unlock(philo->data->time);
 		pthread_mutex_unlock(philo->save);
 		pthread_mutex_unlock(philo->data->death);
-		print_status(philo, "\e[0;31mis dead ! RIP...\n");
+		print_status(philo, "\e[0;31mis dead ! RIP...\e[0;37m\n");
 		pthread_mutex_lock(philo->save);
 		philo->still_alive = 0;
 		pthread_mutex_unlock(philo->save);
